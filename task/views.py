@@ -23,6 +23,7 @@ def Add_task(request):
     if request.method=='POST':
         fm=taskfrom(request.POST)
         if fm.is_valid():
+            fm.instance.user=request.user
             fm.save()
             return HttpResponseRedirect('/')
     else:

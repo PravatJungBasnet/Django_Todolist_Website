@@ -27,7 +27,7 @@ class task(models.Model):
     description=models.TextField()
     complete=models.BooleanField(default=False)
     create=models.DateTimeField(auto_now_add=True)
-    task_priority=models.IntegerField(choices=priority_choices,null=True)
+    task_priority=models.IntegerField(choices=priority_choices)
     due_date=models.DateTimeField()
     def due_remainder(self):
         now=timezone.now()
