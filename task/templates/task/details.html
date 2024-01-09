@@ -1,0 +1,42 @@
+{% extends 'task/base.html' %}
+{% load static %}
+{% block content%}
+<div class=" shadow ms-2 mt-5">
+<h1 class=" alert alert-primary my-5 mt-5 text-center">List Details</h1>
+    <table class="table ms-5">
+        <thead>
+          <tr>
+            
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">create</th>
+            <th scope="col">Complete</th>
+            <th scope="col">priority</th>
+            
+            <th scope="col">Due_Date</th>
+            
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            
+            <td>{{lst.title}}</td>
+            <td>{{lst.description}}</td>
+            <td>{{lst.create}}</td>
+            <td>{{lst.complete}}</td>
+            <td>{{lst.task_priority}}</td>
+            <td>{{lst.due_date}}</td>
+           
+          </tr>
+         
+        </tbody>
+      </table>
+
+    
+<a href="{% url 'hm' %}" class="btn btn-primary ms-5">Back To Home</a>
+<br><br>
+
+</div>
+
+{% endblock content %}

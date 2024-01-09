@@ -1,0 +1,82 @@
+{% extends 'task/base.html' %}
+{% load static %}
+{% block content %}
+<div class="header-bar   bg-secondary  ">
+
+{% if request.user.is_authenticated %}
+<h1 class="ms-5 mt-2"> Hello {{request.user|title}}</h1>
+<h3 class="ms-5">You have <i>{{count_task}} incomplete tasks</i></h2>
+<a href="{% url 'out' %}" class=" ms-5 btn btn-secondary d-inline "> Logout</a>
+<br>
+<br>
+
+</div>
+<br>
+<br>
+
+<hr>
+<form action="" method="GET" class="ms-5 ">
+  <input type="text" name="search_area">
+  <input type="submit" value="Search" name="search">
+</form>
+<br>
+<table class="table ms-5">
+  <thead>
+    <tr>
+     
+      <th scope="col">Task</th>
+      <th scope="col">Action</th>
+    
+      
+  </thead>
+  <tbody>
+    <tr>
+      {% for list in lst  %}
+      <td>{{list.title}}</td>
+      
+      <td> <a href="{% url 'det' list.id %}" class="btn btn-primary">View Details</a>
+           <a href="{% url 'up' list.id %}" class="btn btn-warning">Update</a>
+          <a href="{% url 'del' list.id %}" class="btn btn-danger">Delete</a></td>
+
+    </tr>
+    {% empty %}
+    <h2 class="ms-5">No Task Left</h2>
+  
+    {% endfor %}
+   
+    
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+<br>
+
+<div class="ADD-TASK ms-5">
+  <a href="{% url 'add' %}" class="btn btn-primary">Add Task</a>
+</div>
+
+
+
+
+
+
+
+
+
+<!--if user is not authenticated -->
+{% else %}
+
+<h1 class="ms-3 mt-2 text-center alert alert-primary">To Do list</h1>
+<a href="{% url 'sig' %}" class="ms-3 btn btn-primary">SignUp</a>
+<a href="{%  url 'log' %}" class="ms-3 btn btn-primary">LogIn</a>
+{% endif %}
+
+
+
+{% endblock content %}

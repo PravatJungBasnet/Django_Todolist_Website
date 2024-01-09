@@ -1,0 +1,48 @@
+
+{% extends 'task/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-lg-3 shadow mx-auto mt-5 my-5">
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    
+<h2 class=" text-center  mt-2">Login</h2>
+
+
+
+<form action="" method="post" class=" mt-5 text-center">
+    {% csrf_token %}
+    {% for form in fm %}
+    {{form.label_tag}}
+    {{form}}
+    {{form.errors}}
+   
+    <br>
+    <br>
+    {% endfor %}
+    <div class=" ms-5 me-5 alert alert-primary rounded-pill">
+    <input type="submit" value="Login" class="btn btn-outline-primary rounded-pill border-0 fs-4 "> 
+<br>
+</div>
+<div class="set ms-2 text-center">
+<a href="{% url 'sig' %}"  >Does not have an account?</a>
+</div>
+<br>
+<br>
+<div class="set ms-2 text-center">
+<a href="{% url 'set' %}">Forgot Password?</a>
+</div>
+
+
+<br>
+<br>
+</div>
+
+{% endblock content %}

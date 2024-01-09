@@ -1,0 +1,24 @@
+{% extends 'task/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-lg-5 shadow mt-5 mx-auto ">
+<h2 class="mt-5 ms-2">Do you really wanna a delete "{{pi.title}}" task?</h2>
+
+<br>
+    
+    <form action="" method="post" class="ms-2">
+    {% csrf_token %}
+    <input type="submit" value="Delete" id="sub" class="btn btn-danger">
+    <a href="{% url 'hm' %}" class="btn btn-primary ms-2">Cancel</a> 
+
+</form>
+
+
+<br>
+
+</div>
+
+
+
+
+{% endblock content %}
