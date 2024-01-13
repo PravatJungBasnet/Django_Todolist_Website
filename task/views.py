@@ -9,7 +9,7 @@ from django.contrib import messages
 # retrive according to specific user and search task
 def home(request):
     if request.user.is_authenticated:
-        lst=task.objects.filter(user=request.user)
+        lst=task.objects.filter(user=request.user).order_by('-task_priority')
         count_task=lst.filter(complete=False).count()
         tsearch=request.GET.get('search_area','')
         if tsearch:
