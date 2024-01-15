@@ -9,27 +9,29 @@ from django.utils import timezone
 
 
 class task(models.Model):
-    priority_choices =[
-  (1,'1'),
-  (2,'2'),
-  (3,'3'),
-  (4,'4'),
-  (5,'5'),
-  (6,'6'),
-  (7,'7'),
-  (8,'8'),
-  (9,'9'),
-  (10,'10'),
+  priority_choices =[
+  ('Low','Low'),
+  ('Medium','Medium'),
+  ('High','High'),
+  
+  
 
 ]
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
-    title=models.CharField(max_length=100)
-    description=models.TextField()
-    complete=models.BooleanField(default=False)
-    create=models.DateTimeField(auto_now_add=True)
-    task_priority=models.IntegerField(choices=priority_choices)
-    due_date=models.DateTimeField()
-    def due_remainder(self):
+  status_choices=[
+    ('Pause','Pause'),
+    ('In progress','in Progress'),
+    ('Complete','Complete'),
+  ]
+  
+  user=models.ForeignKey(User,on_delete=models.CASCADE)
+  title=models.CharField(max_length=100)
+  description=models.TextField()
+  complete=models.BooleanField(default=False)
+  create=models.DateTimeField(auto_now_add=True)
+  task_priority=models.CharField(choices=priority_choices,max_length=30)
+  due_date=models.DateTimeField()
+  status=models.CharField(choices=status_choices,max_length=50)
+  def due_remainder(self):
         now=timezone.now()
         time_difference=self.due_date-now
         return time_difference

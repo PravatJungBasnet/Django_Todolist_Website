@@ -1,17 +1,15 @@
 {% extends 'task/base.html' %}
 {% load static %}
 {% block content %}
-<div class="header-bar   bg-secondary  ">
+
 
 {% if request.user.is_authenticated %}
-<h1 class="ms-5 mt-2"> Hello {{request.user|title}}</h1>
-<h3 class="ms-5">You have <i>{{count_task}} incomplete tasks</i></h2>
-<a href="{% url 'out' %}" class=" ms-5 btn btn-secondary d-inline "> Logout</a>
-<br>
-<br>
+<h3 class=" header ms-5 mt-5 text-center alert alert-warning">You have <i>{{count_task}} incomplete tasks</i></h2>
 
-</div>
-<br>
+
+
+
+
 <br>
 
 <hr>
@@ -26,6 +24,8 @@
      
       <th scope="col">Task</th>
       <th scope="col">Action</th>
+      <th scope="col">Status</th>
+    
     
       
   </thead>
@@ -34,11 +34,16 @@
       {% for list in lst  %}
       <td>{{list.title}}</td>
       
-      <td> <a href="{% url 'det' list.id %}" class="btn btn-primary">View Details</a>
-           <a href="{% url 'up' list.id %}" class="btn btn-warning">Update</a>
-          <a href="{% url 'del' list.id %}" class="btn btn-danger">Delete</a></td>
+      <td> <a href="{% url 'det' list.id %}" class="btn btn-success "><i class="fa fa-eye " style="font-size:18px "> View</i></a>
+           <a href="{% url 'up' list.id %}" class="btn btn-success"><i class="fa fa-edit" style="font-size:18px "> Edit</i></a>
+          <a href="{% url 'del' list.id %}" class="btn btn-danger  "><i class="fa fa-trash-o" style="font-size:18px "> Delete</i></a></td>
+      <td class=" text-dark  btn-danger">{{list.status}}</td>    
 
     </tr>
+
+ 
+
+
     {% empty %}
     <h2 class="ms-5">No Task Left</h2>
   

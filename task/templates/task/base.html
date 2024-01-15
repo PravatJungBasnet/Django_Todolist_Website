@@ -11,6 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'task/css/bootstrap.min.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" media="screen and (max-width:998)"  href="{% static 'task/css/phone.css' %}">
     <style>
         .container{
         border: 5px solid;
@@ -21,10 +24,66 @@
         .out{
             float: right;
         }
+        .nav-item {
+            text-align:left;
+        }
+       
+        .navbar{
+            background-color:#d6d6d6;
+        }
+        
 
         
     </style>
 </head>
+<!-- Navbar -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary navbar fs-4 ms-0 ">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Navbar brand -->
+      <a class="navbar-brand me-2" href="#">Todolist
+      </a>
+  
+      <!-- Toggle button -->
+      <button
+        data-mdb-collapse-init
+        class="navbar-toggler"
+        type="button"
+        data-mdb-target="#navbarButtonsExample"
+        aria-controls="navbarButtonsExample"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarButtonsExample">
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-4">
+          <li class="nav-item ms-2">
+            <a class="nav-link ms-2" href="{% url 'hm' %}">Home</a>
+          </li>
+        </ul>
+        <!-- Left links -->
+        {% if request.user.is_authenticated %}
+        <div class="d-flex align-items-center text-decoration-none me-auto"> Hello {{request.user|title}}
+
+        </div>
+
+  
+        <div class="d-flex align-items-center text-decoration-none ">
+          <a href="{% url 'out' %}" class="text-decoration-none text-dark me-5 ">Logout</a>
+   
+        </div>
+        {% endif %}
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
 <body>
     <div class="container-fluid ">
     {% block side %}
@@ -32,5 +91,6 @@
     {% block content %}
     {% endblock content %}
 </div>
+
 </body>
 </html>

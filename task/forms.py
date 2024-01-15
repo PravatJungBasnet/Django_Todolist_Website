@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class taskfrom(forms.ModelForm):
     class Meta:
         model=task
-        fields=['title','description','complete','task_priority','due_date',]
+        fields=['title','description','complete','task_priority','due_date','status',]
 #signup
 class Signup(UserCreationForm):
     password1=forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
